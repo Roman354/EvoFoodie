@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <h3>Foodie</h3>
+
+  <div class="navbar-center">
+    <a routerLink="/">Главная</a>
+    <a routerLink="/recipes">Каталог рецептов</a>
+  </div>
+
+  <div class="navbar-right">
+    <ng-container [ngSwitch]="userState">
+
+      <!-- Гость -->
+      <ng-template ngSwitchCase="guest">
+        <button (click)="login()" class="nav-auth-button">Вход в аккаунт</button>
+      </ng-template>
+
+      <!-- АДМИН -->
+      <ng-template ngSwitchDefault>
+        <div class="user-info">
+          <span>{{ user.firstName }} {{ user.lastName }}</span>
+          <span>{{ user.role }}</span>
+        </div>
+        <app-dropdown [userState]="userState"(logoutEvent)="logout()">
+        </app-dropdown>
+      </ng-template>
+
+    </ng-container>
+  </div>
+</nav>

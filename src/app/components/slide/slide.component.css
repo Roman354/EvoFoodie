@@ -1,0 +1,180 @@
+.slider-container {
+  position: relative;
+  width: 1280px;
+  height: 640px;
+  margin: 0 auto;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.slide-content {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  background: #F8FBFF;
+  border-radius: 24px;
+}
+
+
+.info-container {
+  flex: 1;
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color:  rgba(231, 250, 254, 1);
+
+}
+
+.slide-image {
+  flex: 1;
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 24px 24px 0;
+}
+
+.recipe-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 24px;
+}
+
+.recipe-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+}
+
+.meta-container {
+  margin-top: auto;
+}
+
+.cooking-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4B4EFC;
+  border-radius: 20px;
+  font-size: 14px;
+
+}
+
+
+
+.recipe-tags {
+  display: flex;
+  gap: 8px;
+
+}
+
+
+
+.author-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.author-name {
+  font-size: 14px;
+  color: #333;
+}
+
+.view-recipe-btn {
+  padding: 12px 24px;
+  background: rgba(58, 51, 149, 1);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-recipe-btn:hover {
+  background: #3a3dd9;
+}
+
+.nav-button {
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
+  cursor: pointer;
+
+  border: none;
+  z-index: 2;
+}
+
+.nav-button i {
+  color: #4B4EFC;
+  font-size: 16px;
+}
+
+.nav-button.prev {
+  left: 0;
+}
+
+.nav-button.next {
+  right: 0;
+}
+
+.no-recipes {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 16px;
+}
+
+
+
+
+.meta-container-top{
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  gap: 12px;
+}
+.cooking-time span, .recipe-tags .tag {
+  padding: 6px 12px;
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4B4EFC;
+  border-radius: 20px;
+  font-size: 14px;
+  background: #E8EAFF;
+}
+.meta-container-bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.author-info-text{
+  display: flex;
+  flex-direction: column;
+}

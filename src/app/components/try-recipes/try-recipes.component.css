@@ -1,0 +1,123 @@
+.try-recipes {
+  padding: 60px 0;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.section-description {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.recipe-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+}
+
+.recipe-image {
+  position: relative;
+  height: 200px;
+}
+
+.recipe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.like-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.like-button.liked {
+  background: #ff4b4b;
+}
+
+.recipe-content {
+  padding: 16px;
+}
+
+.recipe-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+  line-height: 1.4;
+}
+
+.recipe-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cooking-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #4B4EFC;
+  font-size: 14px;
+}
+
+.cooking-time i {
+  font-size: 16px;
+}
+
+.recipe-tags {
+  display: flex;
+  gap: 8px;
+}
+
+.tag {
+  padding: 4px 12px;
+  background: #E8EAFF;
+  color: #4B4EFC;
+  border-radius: 20px;
+  font-size: 12px;
+}
+

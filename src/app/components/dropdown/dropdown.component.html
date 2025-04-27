@@ -1,0 +1,8 @@
+<div class="dropdown">
+  <button class="dropdown-btn">Меню</button>
+  <div class="dropdown-content">
+    <a *ngIf="userState !== 'guest'" href="#">Настройки аккаунта</a>
+    <a *ngIf="userState === 'admin'" routerLink="/admin">Администрирование</a>
+    <button (click)="logout()">Выход</button>
+  </div>
+</div>
