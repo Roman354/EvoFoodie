@@ -1,0 +1,12 @@
+<div class="success-message" *ngIf="showLikeMessage">
+  <div class="success-content">
+    <img [src]="image" alt="check" class="success-image">
+    <div class="success-text">
+      <h4>Добавлено в избранное</h4>
+      <p>Сохранили этот рецепт для вас</p>
+    </div>
+    <button class="close-button" (click)="onClose()">
+      x
+    </button>
+  </div>
+</div>

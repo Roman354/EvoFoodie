@@ -1,0 +1,103 @@
+.ingredients-container {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.ingredient-item {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(219, 226, 229, 1);
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  height: 24px;
+  width: 24px;
+  border: 2px solid rgba(219, 226, 229, 1);
+  background-color: white;
+  border-radius: 50%;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: rgba(61, 154, 37, 1);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: rgba(61, 154, 37, 1);
+  border-color: rgba(61, 154, 37, 1);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 8px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.ingredient-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.ingredient-text {
+  font-size: 18px;
+  color: #333;
+  margin: 10px;
+}
+
+.ingredient-description {
+  font-size: 18px;
+  color: #666;
+}
+
+.ingredient-content.checked {
+  text-decoration: line-through;
+  color: #999;
+}
+

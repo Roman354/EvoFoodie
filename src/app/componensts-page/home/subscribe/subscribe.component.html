@@ -1,0 +1,42 @@
+<section class="subscribe-section">
+  <div class="subscribe-container">
+    <div class="subscribe-content">
+      <div class="subscribe-content-text">
+        <h2>Хотите получать новые рецепты?</h2>
+        <p>Не пропустите ни одного вкусного рецепта! Подпишитесь на нашу рассылку, чтобы получать новые кулинарные идеи и рецепты прямо в свою почту.</p>
+
+      </div>
+
+      <form [formGroup]="subscribeForm" (ngSubmit)="onSubmit()" class="subscribe-form">
+        <div class="input-group">
+          <input
+
+            type="email"
+            formControlName="email"
+            placeholder="Введите ваш email..."
+            [class.invalid]="email?.invalid && email?.touched"
+          >
+          <button
+            type="submit"
+            [disabled]="subscribeForm.invalid"
+            [class.disabled]="subscribeForm.invalid">
+            Подписаться
+          </button>
+        </div>
+
+        <div class="error-message" *ngIf="email?.invalid && email?.touched">
+          <span *ngIf="email?.errors?.['required']">Email обязателен</span>
+          <span *ngIf="email?.errors?.['email']">Введите корректный email</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="success-message" *ngIf="showSuccessMessage">
+    <div class="success-content">
+      <img [src]="image" alt="check" class="success-image">
+      <p>Вы успешно подписались на рассылку!</p>
+    </div>
+  </div>
+</section>

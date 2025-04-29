@@ -17,6 +17,8 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
   showMoreButton = true;
   likedRecipes: Set<string> = new Set();
   private subscription: Subscription = new Subscription();
+  showLikeMessage = false;
+  private showTimeMessage: any;
 
   constructor( private recipeService: ApiService, private router: Router) {};
 
@@ -40,9 +42,6 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
     this.loadRecipes();
 
   }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 
   randomSixRecipes(data: any){
     return data.sort(() => Math.random() - 0.5).slice(0, 6);
@@ -56,17 +55,44 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
     this.router.navigate(['/recipes', id]);
   }
 
+
+
+  formatCookingTime(minutes: number): string {
+    return `${minutes} минут`;
+  }
+
+
   toggleLike(recipeId: string, event: Event) {
     event.stopPropagation();
     if (this.likedRecipes.has(recipeId)) {
       this.likedRecipes.delete(recipeId);
     } else {
       this.likedRecipes.add(recipeId);
+      this.onLike();
     }
   }
 
-  formatCookingTime(minutes: number): string {
-    return `${minutes} минут`;
+  onLike() {
+    this.showLikeMessage = true;
+    if (this.showTimeMessage) {
+      clearTimeout(this.showTimeMessage);
+    }
+    this.showTimeMessage = setTimeout(() => {
+      this.showLikeMessage = false;
+    }, 5000);
   }
 
+  ngOnDestroy() {
+    if (this.showTimeMessage) {
+      clearTimeout(this.showTimeMessage);
+    }
+    this.subscription.unsubscribe();
+  }
+
+  closeModal() {
+    this.showLikeMessage = false;
+    if (this.showTimeMessage) {
+      clearTimeout(this.showTimeMessage);
+    }
+  }
 }

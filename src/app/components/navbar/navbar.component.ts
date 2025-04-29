@@ -19,8 +19,10 @@ export class NavbarComponent {
 
   login() {
     // Здесь будет логика авторизации
-    this.userState = 'registered';
-    this.user = { firstName: 'Иван', lastName: 'Иванов', role: 'User' };
+
+    this.router.navigate(['/authorization']);
+    // this.userState = 'registered';
+    // this.user = { firstName: 'Иван', lastName: 'Иванов', role: 'User' };
   }
 
   logout() {

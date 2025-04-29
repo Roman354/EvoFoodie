@@ -1,0 +1,110 @@
+.subscribe-section {
+  padding: 60px 0;
+  position: relative;
+}
+
+.subscribe-container {
+  height: 264px;
+  width: 1319px;
+  margin: 0 auto;
+  background-color: #F0F9FF;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.subscribe-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.subscribe-content-text {
+  width: 50%;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: #000;
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+}
+
+.input-group {
+  display: flex;
+  gap: 16px;
+
+}
+
+input {
+  width: 281px;
+  padding: 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #4B4EFC;
+}
+
+input.invalid {
+  border-color: #FF4B4B;
+}
+
+button {
+  padding: 16px 32px;
+  background: rgba(58, 51, 149, 1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover:not(.disabled) {
+  background: #3a3dd9;
+}
+
+button.disabled {
+  background: #E2E8F0;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #FF4B4B;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ffffff;
+
+  color: rgba(17, 24, 39, 1);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.success-image{
+  width: 24px;
+  height: 24px;
+}
+.success-content{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

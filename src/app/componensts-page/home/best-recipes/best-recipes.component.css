@@ -58,23 +58,27 @@
 
 .like-button {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 40px;
-  height: 40px;
+  top: 10px;
+  right: 10px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: white;
+  /* background: white; */
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  background-image: url('../../../../assets/images/like.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 
 .like-button.liked {
-  background: #ff4b4b;
+  background-image: url('../../../../assets/images/filledLike.png');
 }
 
 .recipe-content {

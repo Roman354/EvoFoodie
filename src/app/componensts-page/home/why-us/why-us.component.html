@@ -1,0 +1,11 @@
+<section class="why-us">
+  <h2 class="section-title">Почему именно мы?</h2>
+
+  <div class="features-grid">
+    <div class="feature-card" *ngFor="let feature of features">
+      <img [src]="image" alt="feature-image" class="feature-image">
+      <h3 class="feature-title">{{feature.title}}</h3>
+      <p class="feature-description">{{feature.description}}</p>
+    </div>
+  </div>
+</section>

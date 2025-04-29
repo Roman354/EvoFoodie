@@ -10,17 +10,16 @@
     <div class="recipe-card" *ngFor="let recipe of displayedRecipes" (click)="viewRecipe(recipe.id)">
       <div class="recipe-image">
         <img [src]="recipe.image" [alt]="recipe.title">
-        <button class="like-button"
+        <div class="like-button"
                 [class.liked]="likedRecipes.has(recipe.id)"
                 (click)="toggleLike(recipe.id, $event)">
-        </button>
+        </div>
       </div>
 
       <div class="recipe-content">
         <h3 class="recipe-title">{{recipe.title}}</h3>
         <div class="recipe-meta">
           <div class="cooking-time">
-            <i class="far fa-clock"></i>
             <span>{{formatCookingTime(recipe.timeCooking)}}</span>
           </div>
 
@@ -37,4 +36,7 @@
       Посмотреть еще
     </button>
   </div>
+
+  <app-like-modal [showLikeMessage]="showLikeMessage" (close)="closeModal()"></app-like-modal>
+
 </section>

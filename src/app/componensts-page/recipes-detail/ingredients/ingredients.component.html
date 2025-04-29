@@ -1,0 +1,21 @@
+<div class="ingredients-container">
+  <h2>Ингредиенты</h2>
+
+
+    <h3>Что вам пригодится</h3>
+    <div class="ingredient-item" *ngFor="let ingredient of ingredients; let i = index">
+      <label class="checkbox-container">
+        <input
+          type="checkbox"
+          [checked]="isSelected(i)"
+          (change)="toggleIngredient(i)"
+        >
+        <span class="checkmark"></span>
+        <span class="ingredient-content" [class.checked]="isSelected(i)">
+          <span class="ingredient-text">{{ ingredient.title }}</span>
+          <span class="ingredient-description">{{ ingredient.description }}</span>
+        </span>
+      </label>
+
+    </div>
+</div>

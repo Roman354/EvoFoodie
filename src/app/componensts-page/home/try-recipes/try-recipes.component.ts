@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { Recipe } from 'src/app/my-interface';
+import { LikeModalComponent } from '../like-modal/like-modal.component';
 
 @Component({
   selector: 'app-try-recipes',
@@ -11,10 +12,11 @@ import { Recipe } from 'src/app/my-interface';
   styleUrls: ['./try-recipes.component.css']
 })
 export class TryRecipesComponent implements OnInit, OnDestroy {
-
   recipes: Recipe[] = [];
   likedRecipes: Set<string> = new Set();
   private subscription: Subscription = new Subscription();
+  showLikeMessage = false;
+  private showTimeMessage: any;
 
   constructor(
     private recipeService: ApiService,
@@ -25,9 +27,6 @@ export class TryRecipesComponent implements OnInit, OnDestroy {
     this.loadRecipes();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 
   private loadRecipes() {
     this.subscription.add(
@@ -51,14 +50,6 @@ export class TryRecipesComponent implements OnInit, OnDestroy {
     this.router.navigate(['/recipes', id]);
   }
 
-  toggleLike(recipeId: string, event: Event) {
-    event.stopPropagation();
-    if (this.likedRecipes.has(recipeId)) {
-      this.likedRecipes.delete(recipeId);
-    } else {
-      this.likedRecipes.add(recipeId);
-    }
-  }
 
   formatCookingTime(minutes: number): string {
     if (minutes < 60) {
@@ -70,4 +61,39 @@ export class TryRecipesComponent implements OnInit, OnDestroy {
       ? `${hours} ч ${remainingMinutes} мин`
       : `${hours} ч`;
   }
+
+
+  toggleLike(recipeId: string, event: Event) {
+    event.stopPropagation();
+    if (this.likedRecipes.has(recipeId)) {
+      this.likedRecipes.delete(recipeId);
+    } else {
+      this.likedRecipes.add(recipeId);
+      this.onLike();
+    }
+  }
+
+  onLike() {
+    this.showLikeMessage = true;
+    if (this.showTimeMessage) {
+      clearTimeout(this.showTimeMessage);
+    }
+    this.showTimeMessage = setTimeout(() => {
+      this.showLikeMessage = false;
+    }, 5000);
+  }
+
+  ngOnDestroy() {
+    if (this.showTimeMessage) {
+      clearTimeout(this.showTimeMessage);
+    }
+    this.subscription.unsubscribe();
+  }
+  closeModal() {
+    this.showLikeMessage = false;
+    if (this.showTimeMessage) {
+      clearTimeout(this.showTimeMessage);
+    }
+  }
+
 }

@@ -1,0 +1,99 @@
+<div class="recipe-container">
+  <div class="recipe-right">
+
+
+    <div class="recipe-info">
+      <div class="recipe-info-container">
+        <h1 class="recipe-title">{{recipe.title}}</h1>
+        <div class="meta-container">
+          <div class="meta-item author-block">
+            <img [src]="recipe.author.avatar" [alt]="recipe.author.firstName" class="author-avatar">
+            <div class="author-info">
+              <span class="author-name">{{recipe.author.firstName}} {{recipe.author.lastName}}</span>
+              <span class="recipe-date">{{formatDate(recipe.createdOn)}}</span>
+            </div>
+          </div>
+
+
+          <div class="meta-item cooking-time">
+            <img src="assets/images/timer.png" class="time-icon">
+            <div class="time-info">
+              <span class="time-label">ВРЕМЯ ПРИГОТОВЛЕНИЯ</span>
+              <span class="time-value">{{recipe.timeCooking}} Минут</span>
+            </div>
+          </div>
+
+
+          <div class="meta-item category">
+            <img src="assets/images/forkKnife.png" class="fork-knife-icon">
+            <span class="category-name">{{recipe.tags[0]}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-image">
+      <img [src]="recipe.image" [alt]="recipe.title">
+    </div>
+
+  </div>
+
+  <div class="recipe-left">
+
+    <div class="actions-container">
+      <button class="action-btn favorite" (click)="toggleFavorite()">
+        <div class="action-content">
+
+          <img src="assets/images/favorite.png" alt="favorite" class="action-icon">
+          <span class="action-text">В ИЗБРАННОЕ</span>
+        </div>
+      </button>
+
+      <button class="action-btn print" (click)="print()">
+        <div class="action-content">
+
+          <img src="assets/images/print.png" alt="print" class="action-icon">
+          <span class="action-text">РАСПЕЧАТАТЬ</span>
+        </div>
+      </button>
+
+      <button class="action-btn share" (click)="share()">
+        <div class="action-content">
+          <img src="assets/images/share.png" alt="share" class="action-icon">
+          <span class="action-text">ПОДЕЛИТЬСЯ</span>
+        </div>
+      </button>
+    </div>
+
+
+  <div class="nutritional-value">
+    <h3>Пищевая ценность</h3>
+    <div class="nutrition-flex" >
+      <div class="nutrition-item">
+        <span class="label">Калории</span>
+        <span class="value">{{recipe.foodValue?.calories || 0}} ккал</span>
+      </div>
+      <div class="nutrition-item">
+        <span class="label">Жиры</span>
+        <span class="value">{{recipe.foodValue?.fats || 0}} г</span>
+      </div>
+      <div class="nutrition-item">
+        <span class="label">Углеводы</span>
+        <span class="value">{{recipe.foodValue?.carbohydrates || 0}} г</span>
+      </div>
+      <div class="nutrition-item">
+        <span class="label">Белки</span>
+        <span class="value">{{recipe.foodValue?.proteins || 0}} г</span>
+      </div>
+    </div>
+    <p class="nutrition-note">Значения приблизительные</p>
+  </div>
+</div>
+</div>
+
+
+
+  <!-- Описание -->
+<div class="recipe-description">
+  <p>{{recipe.body}}</p>
+</div>

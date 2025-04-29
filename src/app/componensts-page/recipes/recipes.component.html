@@ -1,3 +1,33 @@
-<p>
-  recipes works!
-</p>
+<app-navbar></app-navbar>
+<main>
+  <section class="recipes-catalog">
+    <div class="section-header">
+      <h1>Каталог рецептов</h1>
+      <p>Все самые лучшие рецепты собраны здесь</p>
+    </div>
+    <div class="recipes-flex">
+      <div class="recipe-card" *ngFor="let recipe of recipes" (click)="viewRecipe(recipe.id)">
+        <div class="recipe-image">
+          <img [src]="recipe.image" [alt]="recipe.title">
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">{{recipe.title}}</h3>
+          <div class="recipe-meta">
+            <div class="cooking-time">
+              <span>{{formatCookingTime(recipe.timeCooking)}}</span>
+            </div>
+            <div class="recipe-tags">
+              <span class="tag" *ngFor="let tag of recipe.tags">{{tag}}</span>
+            </div>
+          </div>
+          <div class="recipe-author">
+            <img [src]="recipe.author.avatar" [alt]="recipe.author.firstName" class="author-avatar">
+            <span class="author-name">{{recipe.author.firstName}} {{recipe.author.lastName}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>

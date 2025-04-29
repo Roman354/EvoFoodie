@@ -1,0 +1,19 @@
+<div class="step-container">
+  <div>
+    <h3>Шаги приготовления</h3>
+    <div class="step-item" *ngFor="let step of cookingSteps; let i = index">
+      <label class="checkbox-container">
+        <input
+          type="checkbox"
+          [checked]="isSelected(i)"
+          (change)="toggleIngredient(i)"
+        >
+        <span class="checkmark"></span>
+        <span class="step-content" [class.checked]="isSelected(i)">
+          <h4 class="step-text">{{ i + 1 }}. {{ step.title }}</h4>
+          <span class="step-description">{{ step.description }}</span>
+        </span>
+      </label>
+    </div>
+  </div>
+</div>

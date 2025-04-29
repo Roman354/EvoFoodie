@@ -15,9 +15,18 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SlideComponent } from './components/slide/slide.component';
-import { BestRecipesComponent } from './components/best-recipes/best-recipes.component';
-import { TryRecipesComponent } from './components/try-recipes/try-recipes.component';
+import { SlideComponent } from './componensts-page/home/slide/slide.component';
+import { BestRecipesComponent } from './componensts-page/home/best-recipes/best-recipes.component';
+import { TryRecipesComponent } from './componensts-page/home/try-recipes/try-recipes.component';
+import { WhyUsComponent } from './componensts-page/home/why-us/why-us.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SubscribeComponent } from './componensts-page/home/subscribe/subscribe.component';
+import { LikeModalComponent } from './componensts-page/home/like-modal/like-modal.component';
+import { ShopNotificationComponent } from './componensts-page/home/shop-notification/shop-notification.component';
+import { RecipeContentComponent } from './componensts-page/recipes-detail/recipe-content/recipe-content.component';
+import { IngredientsComponent } from './componensts-page/recipes-detail/ingredients/ingredients.component';
+import { OtherRecipesComponent } from './componensts-page/recipes-detail/other-recipes/other-recipes.component';
+import { CookingStepsComponent } from './componensts-page/recipes-detail/cooking-steps/cooking-steps.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,12 +43,21 @@ import { TryRecipesComponent } from './components/try-recipes/try-recipes.compon
     FooterComponent,
     SlideComponent,
     BestRecipesComponent,
-    TryRecipesComponent
+    TryRecipesComponent,
+    WhyUsComponent,
+    SubscribeComponent,
+    LikeModalComponent,
+    ShopNotificationComponent,
+    RecipeContentComponent,
+    IngredientsComponent,
+    OtherRecipesComponent,
+    CookingStepsComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

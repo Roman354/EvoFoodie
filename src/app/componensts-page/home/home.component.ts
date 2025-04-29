@@ -1,7 +1,7 @@
 // import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
-
+import { Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +10,15 @@ import { ApiService } from 'src/app/api.service';
 })
 export class HomeComponent implements OnInit {
 
-
-  constructor(private api: ApiService) { }
-
+  constructor(
+    private meta: Meta,
+    private title: Title
+  ) { }
   ngOnInit() {
-
+    this.title.setTitle('Foodie: Главная');
+    this.meta.addTags([
+      { name: 'description', content: 'Сборник кулинарных рецептов, для всей семьи' },
+      { property: 'og:description', content: 'Сборник кулинарных рецептов, для всей семьи' }
+    ]);
   }
-
-
 }

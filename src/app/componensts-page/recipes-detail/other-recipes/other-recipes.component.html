@@ -1,0 +1,15 @@
+<div class="other-recipes-container">
+  <h2>Прочие рецепты</h2>
+
+  <div class="recipes-flex">
+    <div class="recipe-card" *ngFor="let recipe of recipes" (click)="navigateToRecipe(recipe.id)">
+      <div class="recipe-image">
+        <img [src]="recipe.image" [alt]="recipe.title">
+      </div>
+      <div class="recipe-info">
+        <h3>{{ recipe.title }}</h3>
+        <p class="tag" *ngFor="let tag of recipe.tags">{{tag}}</p>
+      </div>
+    </div>
+  </div>
+</div>

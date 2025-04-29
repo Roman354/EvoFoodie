@@ -13,5 +13,8 @@ constructor(private http: HttpClient) { }
     return this.http.get(`https://evo-academy.wckz.dev/api/cooking-blog/posts`, { params })
   }
 
+  getOneRecipe(id: string) {
+    return this.http.get(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${id}`)
+  }
 
 }

@@ -1,0 +1,54 @@
+.why-us {
+  padding: 80px 0;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: #000;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.feature-card {
+  text-align: left;
+  position: relative;
+}
+
+.feature-icon {
+  margin-bottom: 20px;
+}
+
+
+.feature-title {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0%;
+
+}
+
+.feature-description {
+  font-family: Inter;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(107, 114, 128, 1);
+}
+
+.feature-image{
+  position: absolute;
+  top: 17px;
+  left: -30px;
+  object-fit: cover;
+}
+

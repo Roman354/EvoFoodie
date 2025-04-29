@@ -10,11 +10,11 @@
     <div class="recipe-card" *ngFor="let recipe of recipes" (click)="viewRecipe(recipe.id)">
       <div class="recipe-image">
         <img [src]="recipe.image" [alt]="recipe.title">
-        <button class="like-button"
+        <div class="like-button"
                 [class.liked]="likedRecipes.has(recipe.id)"
                 (click)="toggleLike(recipe.id, $event)">
 
-        </button>
+        </div>
       </div>
 
       <div class="recipe-content">
@@ -33,4 +33,7 @@
       </div>
     </div>
   </div>
+
+  <app-like-modal [showLikeMessage]="showLikeMessage" (close)="closeModal()"></app-like-modal>
+
 </section>

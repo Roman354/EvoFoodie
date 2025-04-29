@@ -1,6 +1,5 @@
 <div class="slider-container">
-  <button class="nav-button prev" (click)="previousSlide()" *ngIf="recipes.length > 1">
-    <i class="fas fa-chevron-left"></i>
+  <button class="nav-button prev" (click)="previousSlide()" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" *ngIf="recipes.length > 1">
   </button>
 
   <div class="slide-content" *ngIf="recipes.length > 0">
@@ -8,8 +7,8 @@
       <div>
         <h2 class="recipe-title">{{recipes[currentSlideIndex].title}}</h2>
         <p class="recipe-description">
-          <!-- {{recipes[currentSlideIndex].body}} -->
-          Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim ad minim
+          {{recipes[currentSlideIndex].body}}
+          <!-- Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim ad minim -->
         </p>
       </div>
 
@@ -51,7 +50,6 @@
       </div>
     </div>
 
-    <!-- Изображение -->
     <div class="slide-image">
       <img [src]="recipes[currentSlideIndex].image"
            [alt]="recipes[currentSlideIndex].title"
@@ -59,8 +57,7 @@
     </div>
   </div>
 
-  <button class="nav-button next" (click)="nextSlide()" *ngIf="recipes.length > 1">
-    <i class="fas fa-chevron-right"></i>
+  <button class="nav-button next" (click)="nextSlide()" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" *ngIf="recipes.length > 1">
   </button>
 
   <div class="no-recipes" *ngIf="recipes.length === 0">
