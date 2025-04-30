@@ -33,7 +33,7 @@ export class TryRecipesComponent implements OnInit, OnDestroy {
       this.recipeService.getCookingBlog(new HttpParams()).subscribe({
         next: (data: any) => {
           this.recipes = this.randomFourRecipes(data);
-          console.log(this.recipes);
+          // console.log(this.recipes);
         },
         error: (error: any) => {
           console.error('Error loading recipes:', error);

@@ -9,20 +9,26 @@
   <div class="navbar-right">
     <ng-container [ngSwitch]="userState">
 
-      <!-- Гость -->
       <ng-template ngSwitchCase="guest">
         <button (click)="login()" class="nav-auth-button">Вход в аккаунт</button>
       </ng-template>
 
-      <!-- АДМИН -->
-      <ng-template ngSwitchDefault>
-        <div class="user-info">
-          <span>{{ user.firstName }} {{ user.lastName }}</span>
-          <span>{{ user.role }}</span>
-        </div>
-        <app-dropdown [userState]="userState"(logoutEvent)="logout()">
-        </app-dropdown>
-      </ng-template>
+
+
+        <ng-template ngSwitchDefault >
+          <app-dropdown [userState]="userState" >
+            <div class="user-info-container">
+              <img [src]="user.avatar" alt="avatar" class="user-avatar">
+              <div class="user-info">
+                <span class="user-name">{{ user.firstName }} {{ user.lastName }}</span>
+                <span class="user-role">{{ user.role }}</span>
+
+              </div>
+            </div>
+          </app-dropdown>
+        </ng-template>
+
+
 
     </ng-container>
   </div>

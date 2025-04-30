@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { Store } from '@ngxs/store';
+import { SetUser } from 'src/app/store/auth.state';
 
 @Component({
   selector: 'app-authorization',
@@ -16,7 +18,8 @@ export class AuthorizationComponent {
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -29,8 +32,7 @@ export class AuthorizationComponent {
     if (this.loginForm.valid) {
       this.apiService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          //сохранить токен
-          console.log(response);
+          this.store.dispatch(new SetUser(response));
           this.router.navigate(['/']);
         },
         error: (error) => {

@@ -29,7 +29,7 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
 
           this.recipes = this.randomSixRecipes(data);
           this.displayedRecipes = this.recipes.slice(0, 3);
-          console.log(this.recipes);
+          // console.log(this.recipes);
         },
         error: (error: any) => {
           console.error('Error loading recipes:', error);

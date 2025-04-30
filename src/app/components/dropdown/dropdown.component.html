@@ -1,8 +1,11 @@
 <div class="dropdown">
-  <button class="dropdown-btn">Меню</button>
-  <div class="dropdown-content">
-    <a *ngIf="userState !== 'guest'" href="#">Настройки аккаунта</a>
-    <a *ngIf="userState === 'admin'" routerLink="/admin">Администрирование</a>
-    <button (click)="logout()">Выход</button>
+  <div (click)="toggleDropdown($event)" style="cursor: pointer;">
+    <ng-content></ng-content>
+  </div>
+  <div class="dropdown-content" [class.show]="isOpen">
+    <div class="username-text">Вы вошли как {{username}}</div>
+    <div href="#">Настройки аккаунта</div>
+    <div *ngIf="userState === 'admin'" href="#">Администрирование</div>
+    <div href="#" class="danger" (click)="logout()">Выход</div>
   </div>
 </div>

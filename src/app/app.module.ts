@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { AuthState } from './store/auth.state';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +18,7 @@ import { CreateRecipeComponent } from './componensts-page/create-recipe/create-r
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SlideComponent } from './componensts-page/home/slide/slide.component';
 import { BestRecipesComponent } from './componensts-page/home/best-recipes/best-recipes.component';
 import { TryRecipesComponent } from './componensts-page/home/try-recipes/try-recipes.component';
@@ -29,6 +33,7 @@ import { OtherRecipesComponent } from './componensts-page/recipes-detail/other-r
 import { CookingStepsComponent } from './componensts-page/recipes-detail/cooking-steps/cooking-steps.component';
 import { LikeItRecipesComponent } from './componensts-page/recipes-detail/like-it-recipes/like-it-recipes.component';
 import { CommentsComponent } from './componensts-page/recipes-detail/comments/comments.component';
+import { AuthInterceptor } from './auth-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,9 +66,18 @@ import { CommentsComponent } from './componensts-page/recipes-detail/comments/co
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxsModule.forRoot([AuthState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

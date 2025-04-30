@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +13,12 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private meta: Meta,
-    private title: Title
+    private title: Title,
+    private store: Store
   ) { }
   ngOnInit() {
+    const token = this.store.select(state => state.auth.token);
+    // console.log(token);
     this.title.setTitle('Foodie: Главная');
     this.meta.addTags([
       { name: 'description', content: 'Сборник кулинарных рецептов, для всей семьи' },

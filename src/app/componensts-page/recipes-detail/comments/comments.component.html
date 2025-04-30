@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" class="comment-form">
+<form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" *ngIf="isAuthenticated" class="comment-form">
   <textarea
     formControlName="text"
     placeholder="Ваш комментарий"
@@ -24,9 +24,13 @@
 
   </textarea>
   <button
-  type="submit"
-  [disabled]="!commentForm.valid"
-  class="submit-button">
-  Отправить
+    type="submit"
+    [disabled]="!commentForm.valid"
+    class="submit-button">
+      Отправить
   </button>
 </form>
+
+<div *ngIf="!isAuthenticated" class="auth-message">
+  Чтобы оставить комментарий, необходимо <a routerLink="/authorization">войти</a> в аккаунт
+</div>
