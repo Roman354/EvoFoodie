@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'authorization', component: AuthorizationComponent},
   {path:'registration', component: RegistrationComponent},
   {path:'create-recipe', component: CreateRecipeComponent},
-  {path: '**', redirectTo: '' }
+  {path: '**', redirectTo: 'error' }
 ];
 
 @NgModule({

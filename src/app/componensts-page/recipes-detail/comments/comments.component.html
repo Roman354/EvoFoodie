@@ -1,0 +1,32 @@
+<h2>Комментарии</h2>
+
+<div class="comments-list">
+  <div *ngFor="let comment of comments" class="comment">
+    <img [src]="comment.user.avatar" [alt]="comment.user.username" class="user-avatar">
+    <div class="comment-header">
+
+      <div class="user-info">
+        <div class="user-name">{{ comment.user.firstName }} {{ comment.user.lastName }}</div>
+        <div class="comment-date">{{ formatDate(comment.createdOn) }}</div>
+      </div>
+      <div class="comment-text">{{ comment.text }}</div>
+    </div>
+
+  </div>
+</div>
+
+<form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" class="comment-form">
+  <textarea
+    formControlName="text"
+    placeholder="Ваш комментарий"
+    rows="3"
+    class="comment-input">
+
+  </textarea>
+  <button
+  type="submit"
+  [disabled]="!commentForm.valid"
+  class="submit-button">
+  Отправить
+  </button>
+</form>

@@ -27,6 +27,8 @@ import { RecipeContentComponent } from './componensts-page/recipes-detail/recipe
 import { IngredientsComponent } from './componensts-page/recipes-detail/ingredients/ingredients.component';
 import { OtherRecipesComponent } from './componensts-page/recipes-detail/other-recipes/other-recipes.component';
 import { CookingStepsComponent } from './componensts-page/recipes-detail/cooking-steps/cooking-steps.component';
+import { LikeItRecipesComponent } from './componensts-page/recipes-detail/like-it-recipes/like-it-recipes.component';
+import { CommentsComponent } from './componensts-page/recipes-detail/comments/comments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ import { CookingStepsComponent } from './componensts-page/recipes-detail/cooking
     RecipeContentComponent,
     IngredientsComponent,
     OtherRecipesComponent,
-    CookingStepsComponent
+    CookingStepsComponent,
+    LikeItRecipesComponent,
+    CommentsComponent
    ],
   imports: [
     BrowserModule,

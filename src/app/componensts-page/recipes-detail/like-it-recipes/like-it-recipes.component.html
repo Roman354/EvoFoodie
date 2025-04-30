@@ -1,0 +1,34 @@
+<div class="container" >
+  <h2 class="section-title">Возможно вам понравятся эти рецепты</h2>
+
+  <div class="recipes-flex">
+    <div class="recipe-card" *ngFor="let recipe of recipes">
+      <div class="recipe-image" (click)="viewRecipe(recipe.id)">
+        <img [src]="recipe.image" [alt]="recipe.title">
+        <div class="like-button"
+          [class.liked]="likedRecipes.has(recipe.id)"
+          (click)="toggleLike(recipe.id, $event)">
+        </div>
+      </div>
+
+      <div class="recipe-info">
+        <h3 class="recipe-title">{{recipe.title}}</h3>
+
+        <div class="recipe-meta">
+          <div class="time">
+            <img src="assets/images/timer.png" alt="time">
+            <span>{{recipe.timeCooking}} минут</span>
+          </div>
+
+
+          <div class="recipe-tags">
+            <img src="assets/images/forkKnife.png" alt="tag">
+            <span class="tag" *ngFor="let tag of recipe.tags">{{tag}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-like-modal [showLikeMessage]="showLikeMessage" (close)="closeModal()"></app-like-modal>

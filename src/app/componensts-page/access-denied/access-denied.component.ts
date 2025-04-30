@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-access-denied',
   templateUrl: './access-denied.component.html',
   styleUrls: ['./access-denied.component.css']
 })
-export class AccessDeniedComponent implements OnInit {
+export class AccessDeniedComponent  {
+  constructor(
+    private router: Router,
+    private location: Location
+  ) {}
 
-  constructor() { }
+  goBack(): void {
+    this.location.back();
+  }
 
-  ngOnInit() {
+  goHome(): void {
+    this.router.navigate(['/']);
   }
 
 }

@@ -9,6 +9,7 @@ import { RecipesDetailComponent } from '../recipes-detail.component';
 export class RecipeContentComponent implements OnInit {
   recipe: any = false;
   isInFavorites = false;
+  isShareModalOpen = false;
   constructor(private recipeComponent: RecipesDetailComponent) { }
 
   ngOnInit() {
@@ -34,8 +35,10 @@ export class RecipeContentComponent implements OnInit {
   }
 
   share() {
+    this.isShareModalOpen = true;
+  }
 
-    console.log('share')
-
+  closeModal() {
+    this.isShareModalOpen = false;
   }
 }

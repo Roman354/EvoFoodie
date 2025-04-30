@@ -1,3 +1,23 @@
-<p>
-  error works!
-</p>
+<div class="error-container">
+  <div class="error-content">
+    <h1 class="error-code">401 ОШИБКА</h1>
+    <h2 class="error-title">Доступ запрещен</h2>
+    <p class="error-message">У вас нет прав на просмотр этого раздела</p>
+
+    <div class="error-actions">
+      <button class="error-button back" (click)="goBack()">
+
+        Назад
+        <span class="button-icon">→</span>
+      </button>
+      <button class="error-button home" (click)="goHome()">
+        На главную
+        <span class="button-icon">→</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="error-image">
+    <img src="https://evo-academy.wckz.dev/assets/image/image_404.png" alt="Error 404">
+  </div>
+</div>

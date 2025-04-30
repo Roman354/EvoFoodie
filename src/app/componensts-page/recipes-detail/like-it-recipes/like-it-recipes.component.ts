@@ -1,34 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Recipe } from 'src/app/my-interface';
 import { Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-import { ApiService } from 'src/app/api.service';
-import { Recipe } from 'src/app/my-interface';
-
 @Component({
-  selector: 'app-best-recipes',
-  templateUrl: './best-recipes.component.html',
-  styleUrls: ['./best-recipes.component.css']
+  selector: 'app-like-it-recipes',
+  templateUrl: './like-it-recipes.component.html',
+  styleUrls: ['./like-it-recipes.component.css']
 })
-export class BestRecipesComponent implements OnInit, OnDestroy {
+export class LikeItRecipesComponent implements OnInit {
+  randomRecipes: Recipe[] = [];
   recipes: Recipe[] = [];
-  displayedRecipes: Recipe[] = [];
-  showMoreButton = true;
-  likedRecipes: Set<string> = new Set();
+  constructor(private recipeService: ApiService, private router: Router) {}
   private subscription: Subscription = new Subscription();
+  likedRecipes: Set<string> = new Set();
   showLikeMessage = false;
   private showTimeMessage: any;
 
-  constructor( private recipeService: ApiService, private router: Router) {};
+  ngOnInit(): void {
+    this.loadRecipes();
+  }
 
   private loadRecipes() {
     this.subscription.add(
       this.recipeService.getCookingBlog(new HttpParams()).subscribe({
         next: (data: any) => {
 
-          this.recipes = this.randomSixRecipes(data);
-          this.displayedRecipes = this.recipes.slice(0, 3);
+          this.recipes = this.randomFourRecipes(data);
           console.log(this.recipes);
         },
         error: (error: any) => {
@@ -37,29 +37,8 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
       })
     );
   }
-  randomSixRecipes(data: any){
-    return data.sort(() => Math.random() - 0.5).slice(0, 6);
-  }
-
-  ngOnInit() {
-    this.loadRecipes();
-
-  }
-
-
-  showMore() {
-    this.displayedRecipes = this.recipes;
-    this.showMoreButton = false;
-  }
-
-  viewRecipe(id: string) {
-    this.router.navigate(['/recipes', id]);
-  }
-
-
-
-  formatCookingTime(minutes: number): string {
-    return `${minutes} минут`;
+  randomFourRecipes(data: any){
+    return data.sort(() => Math.random() - 0.5).slice(0, 4);
   }
 
 
@@ -89,11 +68,15 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
     }
     this.subscription.unsubscribe();
   }
-
   closeModal() {
     this.showLikeMessage = false;
     if (this.showTimeMessage) {
       clearTimeout(this.showTimeMessage);
     }
+  }
+  viewRecipe(id: string) {
+    this.router.navigate(['/recipes', id]).then(() => {
+      window.location.reload();
+    });
   }
 }
