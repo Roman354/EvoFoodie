@@ -24,4 +24,22 @@ constructor(private http: HttpClient) { }
     return this.http.post(`https://evo-academy.wckz.dev/api/cooking-blog/posts/${comment.postId}/add-comment`, comment);
   }
 
+  register(userData: {
+    username: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    middleName: string;
+  }): Observable<any> {
+    return this.http.post('https://evo-academy.wckz.dev/api/cooking-blog/users/registration', userData);
+  }
+
+  login(userData: {
+    username: string;
+    password: string;
+    fastJwt: boolean;
+  }): Observable<any> {
+    return this.http.post(`https://evo-academy.wckz.dev/api/cooking-blog/users/sign?fastJwt=${userData.fastJwt}`, userData);
+  }
+
 }
