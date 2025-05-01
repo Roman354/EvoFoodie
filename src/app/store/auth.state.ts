@@ -1,5 +1,5 @@
 import { State, Action, StateContext, Store } from '@ngxs/store';
-import { HttpRequest, HttpHandlerFn } from '@angular/common/http';
+
 export interface User {
   id: string;
   role: string;

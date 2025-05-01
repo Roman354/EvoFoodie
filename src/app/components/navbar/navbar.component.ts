@@ -33,13 +33,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.store.selectSnapshot(state => state.auth.user);
-    console.log("NAVBAR-USER",this.user);
 
     this.store.select(state => state.auth.user).subscribe(user => {
       if (user) {
         this.userState = user.role;
-        // console.log(user.jwtToken);
-        // console.log(user.role,);
 
       }
     });

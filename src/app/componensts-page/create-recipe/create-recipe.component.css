@@ -1,0 +1,113 @@
+.recipe-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section {
+  margin-bottom: 30px;
+  padding: 20px;
+
+}
+
+h2 {
+  color: rgba(0, 0, 0, 1);
+  margin-bottom: 30px;
+  text-align: start;
+  padding: 20px;
+  font-size: 32px;
+}
+
+h3 {
+  color: rgba(17, 24, 39, 1);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+}
+
+input, textarea {
+  width: 512px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.invalid {
+  border-color: #dc3545;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.add-button {
+  background-color: rgba(58, 51, 149, 1);
+  color: rgba(255, 255, 255, 1);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+.submit-button {
+  background-color: rgba(58, 51, 149, 1);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 220px;
+  font-size: 16px;
+  margin-top: 20px;
+
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.step-group, .ingredient-group {
+  background-color: white;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+
+}
+
+.error-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 4px;
+  z-index: 10;
+}
+.step-description{
+  color: rgba(107, 114, 128, 1);
+  font-size: 14px;
+}
+

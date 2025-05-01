@@ -16,7 +16,6 @@ export class IngredientsComponent implements OnInit {
       this.ingredients = this.recipeComponent.recipe.ingredients;
     }
 
-    console.log(this.ingredients);
   }
   toggleIngredient(index: number): void {
     if (this.selectedIngredients.has(index)) {

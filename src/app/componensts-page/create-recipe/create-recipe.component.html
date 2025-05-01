@@ -1,3 +1,154 @@
-<p>
-  create-recipe works!
-</p>
+<app-navbar></app-navbar>
+
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="recipe-form">
+  <h2>Создание рецепта</h2>
+
+  <div class="section">
+    <h3>Основная информация</h3>
+    <div class="form-group">
+      <label for="title">Название рецепта</label>
+      <input id="title" type="text" formControlName="title"
+             [class.invalid]="isFieldInvalid('title')">
+      <div class="error-message" *ngIf="isFieldInvalid('title')">
+        Это поле обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="body">Краткое описание</label>
+      <textarea id="body" formControlName="body"
+                [class.invalid]="isFieldInvalid('body')"></textarea>
+      <div class="error-message" *ngIf="isFieldInvalid('body')">
+        Это поле обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Изображение</label>
+      <input id="image" type="text" formControlName="image"
+             [class.invalid]="isFieldInvalid('image')">
+      <div class="error-message" *ngIf="isFieldInvalid('image')">
+        Это поле обязательно для заполнения
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section">
+    <h3>Дополнительная информация</h3>
+    <div class="form-group">
+      <label>Категории</label>
+      <input type="text"
+             class="form-control"
+             formControlName="tagsInput"
+             >
+      <div class="error-message" *ngIf="recipeForm.get('tagsInput')?.invalid && recipeForm.get('tagsInput')?.touched">
+        Необходимо добавить хотя бы одну категорию
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="timeCooking">Время приготовления</label>
+      <input id="timeCooking" type="number" formControlName="timeCooking" min="0"
+             [class.invalid]="isFieldInvalid('timeCooking')">
+      <div class="error-message" *ngIf="isFieldInvalid('timeCooking')">
+        Введите корректное время приготовления
+      </div>
+    </div>
+
+    <div formGroupName="foodValue">
+
+
+      <div class="form-group">
+        <label for="proteins">Белки</label>
+        <input id="proteins" type="number" formControlName="proteins" min="0"
+               [class.invalid]="isFieldInvalid('foodValue.proteins')">
+        <div class="error-message" *ngIf="isFieldInvalid('foodValue.proteins')">
+          Введите корректное количество белков
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="fats">Жиры</label>
+        <input id="fats" type="number" formControlName="fats" min="0"
+               [class.invalid]="isFieldInvalid('foodValue.fats')">
+        <div class="error-message" *ngIf="isFieldInvalid('foodValue.fats')">
+          Введите корректное количество жиров
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="carbohydrates">Углеводы</label>
+        <input id="carbohydrates" type="number" formControlName="carbohydrates" min="0"
+               [class.invalid]="isFieldInvalid('foodValue.carbohydrates')">
+        <div class="error-message" *ngIf="isFieldInvalid('foodValue.carbohydrates')">
+          Введите корректное количество углеводов
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="calories">Калории</label>
+      <input id="calories" type="number" formControlName="calories" min="0"
+             [class.invalid]="isFieldInvalid('foodValue.calories')">
+      <div class="error-message" *ngIf="isFieldInvalid('foodValue.calories')">
+        Введите корректное количество калорий
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Детальная информация</h3>
+    <p class="step-description">Детально опишите первый шаг вашего рецепта</p>
+    <div formArrayName="cookingSteps">
+      <div *ngFor="let step of cookingSteps.controls; let i=index" [formGroupName]="i" class="step-group">
+        <div class="form-group">
+          <label>Краткое действие</label>
+          <input type="text" formControlName="title" >
+          <div class="error-message" *ngIf="step.get('title')?.invalid && step.get('title')?.touched">
+            Это поле обязательно для заполнения
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Описание</label>
+          <textarea formControlName="description"></textarea>
+          <div class="error-message" *ngIf="step.get('description')?.invalid && step.get('description')?.touched">
+            Это поле обязательно для заполнения
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="add-button" (click)="addStep()">Добавить еще</button>
+  </div>
+
+  <div class="section">
+    <h3>Ингредиенты</h3>
+    <div formArrayName="ingredients">
+      <div *ngFor="let ingredient of ingredients.controls; let i=index" [formGroupName]="i" class="ingredient-group">
+        <div class="form-group">
+          <label>Название ингредиента</label>
+          <input type="text" formControlName="title">
+          <div class="error-message" *ngIf="ingredient.get('title')?.invalid && ingredient.get('title')?.touched">
+            Это поле обязательно для заполнения
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Описание</label>
+          <input type="text" formControlName="description">
+          <div class="error-message" *ngIf="ingredient.get('description')?.invalid && ingredient.get('description')?.touched">
+            Это поле обязательно для заполнения
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="add-button" (click)="addIngredient()">Добавить еще</button>
+  </div>
+
+  <button type="submit" class="submit-button">Отправить рецепт</button>
+
+  <div class="error-notification" *ngIf="showError">
+    {{ errorMessage }}
+  </div>
+</form>
+<app-footer></app-footer>

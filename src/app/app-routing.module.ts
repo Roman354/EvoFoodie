@@ -8,6 +8,7 @@ import { AccessDeniedComponent } from './componensts-page/access-denied/access-d
 import { AuthorizationComponent } from './componensts-page/authorization/authorization.component';
 import { RegistrationComponent } from './componensts-page/registration/registration.component';
 import { CreateRecipeComponent } from './componensts-page/create-recipe/create-recipe.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path:'denied', component:AccessDeniedComponent},
   {path:'authorization', component: AuthorizationComponent},
   {path:'registration', component: RegistrationComponent},
-  {path:'create-recipe', component: CreateRecipeComponent},
+  {path:'create-recipe', component: CreateRecipeComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'error' }
 ];
 

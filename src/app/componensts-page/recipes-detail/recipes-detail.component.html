@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <main class="recipe-detail" *ngIf="recipe">
   <div class="recipe-detail-container">
-    <app-recipe-content></app-recipe-content>
+    <app-recipe-content [recipe]="recipe"></app-recipe-content>
 
     <div class="recipe-sections">
       <div class="left-column">
@@ -9,11 +9,11 @@
         <app-cooking-steps></app-cooking-steps>
       </div>
       <div class="right-column">
-        <app-other-recipes></app-other-recipes>
+        <app-other-recipes *ngIf="recipes" [recipes]="recipes"></app-other-recipes>
       </div>
 
     </div>
-    <app-like-it-recipes></app-like-it-recipes>
+    <app-like-it-recipes *ngIf="recipes" [recipes]="recipes"></app-like-it-recipes>
     <app-comments></app-comments>
   </div>
 </main>

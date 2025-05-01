@@ -1,10 +1,12 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { Recipe } from 'src/app/my-interface';
+import { ToggleLikeRecipe } from 'src/app/store/liked-recipes.state';
 
 @Component({
   selector: 'app-best-recipes',
@@ -20,7 +22,7 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
   showLikeMessage = false;
   private showTimeMessage: any;
 
-  constructor( private recipeService: ApiService, private router: Router) {};
+  constructor( private recipeService: ApiService, private router: Router, private store: Store) {};
 
   private loadRecipes() {
     this.subscription.add(
@@ -29,7 +31,6 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
 
           this.recipes = this.randomSixRecipes(data);
           this.displayedRecipes = this.recipes.slice(0, 3);
-          // console.log(this.recipes);
         },
         error: (error: any) => {
           console.error('Error loading recipes:', error);
@@ -62,15 +63,14 @@ export class BestRecipesComponent implements OnInit, OnDestroy {
     return `${minutes} минут`;
   }
 
-
   toggleLike(recipeId: string, event: Event) {
     event.stopPropagation();
-    if (this.likedRecipes.has(recipeId)) {
-      this.likedRecipes.delete(recipeId);
-    } else {
-      this.likedRecipes.add(recipeId);
-      this.onLike();
-    }
+    this.store.dispatch(new ToggleLikeRecipe(recipeId));
+    this.onLike();
+  }
+
+  isRecipeLiked(recipeId: string): boolean {
+    return this.store.selectSnapshot(state => state.likedRecipes.likedRecipeIds.has(recipeId));
   }
 
   onLike() {

@@ -41,10 +41,10 @@
   <div class="recipe-left">
 
     <div class="actions-container">
-      <button class="action-btn favorite" (click)="toggleFavorite()">
+      <button class="action-btn favorite" (click)="toggleFavorite(recipe.id, $event)">
         <div class="action-content">
+          <img [src]="isRecipeLiked(recipe.id) ? 'assets/images/filledFavorite.png' : 'assets/images/favorite.png'" alt="favorite" class="action-icon">
 
-          <img src="assets/images/favorite.png" alt="favorite" class="action-icon">
           <span class="action-text">В ИЗБРАННОЕ</span>
         </div>
       </button>
@@ -112,3 +112,5 @@
     </div>
   </div>
 </div>
+
+<app-like-modal [showLikeMessage]="showLikeMessage" (close)="closeModalLike()"></app-like-modal>

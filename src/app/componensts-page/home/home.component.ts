@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
   ) { }
   ngOnInit() {
     const token = this.store.select(state => state.auth.token);
-    // console.log(token);
     this.title.setTitle('Foodie: Главная');
     this.meta.addTags([
       { name: 'description', content: 'Сборник кулинарных рецептов, для всей семьи' },

@@ -27,7 +27,6 @@ export class RecipesComponent implements OnInit {
       this.recipeService.getCookingBlog(new HttpParams()).subscribe({
         next: (data: any) => {
           this.recipes = data;
-          console.log(this.recipes);
         },
         error: (error: any) => {
           console.error('Error loading recipes:', error);

@@ -2,11 +2,11 @@
   <h2 class="section-title">Возможно вам понравятся эти рецепты</h2>
 
   <div class="recipes-flex">
-    <div class="recipe-card" *ngFor="let recipe of recipes">
+    <div class="recipe-card" *ngFor="let recipe of recipesRender  ">
       <div class="recipe-image" (click)="viewRecipe(recipe.id)">
         <img [src]="recipe.image" [alt]="recipe.title">
         <div class="like-button"
-          [class.liked]="likedRecipes.has(recipe.id)"
+          [class.liked]="isRecipeLiked(recipe.id)"
           (click)="toggleLike(recipe.id, $event)">
         </div>
       </div>

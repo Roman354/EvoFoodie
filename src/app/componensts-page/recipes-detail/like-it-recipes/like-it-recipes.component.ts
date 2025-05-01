@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
-import { HttpParams } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Recipe } from 'src/app/my-interface';
 import { Router } from '@angular/router';
+import { ToggleLikeRecipe } from 'src/app/store/liked-recipes.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-like-it-recipes',
@@ -12,31 +12,18 @@ import { Router } from '@angular/router';
 })
 export class LikeItRecipesComponent implements OnInit {
   randomRecipes: Recipe[] = [];
-  recipes: Recipe[] = [];
-  constructor(private recipeService: ApiService, private router: Router) {}
+  @Input() recipes: any;
+  recipesRender: any;
+  constructor(private router: Router, private store: Store) {}
   private subscription: Subscription = new Subscription();
   likedRecipes: Set<string> = new Set();
   showLikeMessage = false;
   private showTimeMessage: any;
 
   ngOnInit(): void {
-    this.loadRecipes();
+    this.recipesRender = this.randomFourRecipes(this.recipes);
   }
 
-  private loadRecipes() {
-    this.subscription.add(
-      this.recipeService.getCookingBlog(new HttpParams()).subscribe({
-        next: (data: any) => {
-
-          this.recipes = this.randomFourRecipes(data);
-          console.log(this.recipes);
-        },
-        error: (error: any) => {
-          console.error('Error loading recipes:', error);
-        }
-      })
-    );
-  }
   randomFourRecipes(data: any){
     return data.sort(() => Math.random() - 0.5).slice(0, 4);
   }
@@ -44,12 +31,12 @@ export class LikeItRecipesComponent implements OnInit {
 
   toggleLike(recipeId: string, event: Event) {
     event.stopPropagation();
-    if (this.likedRecipes.has(recipeId)) {
-      this.likedRecipes.delete(recipeId);
-    } else {
-      this.likedRecipes.add(recipeId);
-      this.onLike();
-    }
+    this.store.dispatch(new ToggleLikeRecipe(recipeId));
+    this.onLike();
+  }
+
+  isRecipeLiked(recipeId: string): boolean {
+    return this.store.selectSnapshot(state => state.likedRecipes.likedRecipeIds.has(recipeId));
   }
 
   onLike() {
@@ -75,8 +62,9 @@ export class LikeItRecipesComponent implements OnInit {
     }
   }
   viewRecipe(id: string) {
-    this.router.navigate(['/recipes', id]).then(() => {
-      window.location.reload();
-    });
+    this.recipesRender = this.randomFourRecipes(this.recipes);
+    window.scrollTo(0, 0);
+    this.router.navigate(['/recipes', id])
+
   }
 }

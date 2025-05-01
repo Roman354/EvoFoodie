@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { Recipe } from 'src/app/my-interface';
 import { LikeModalComponent } from '../like-modal/like-modal.component';
+import { ToggleLikeRecipe } from 'src/app/store/liked-recipes.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-try-recipes',
@@ -20,7 +22,8 @@ export class TryRecipesComponent implements OnInit, OnDestroy {
 
   constructor(
     private recipeService: ApiService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {}
 
   ngOnInit() {
@@ -33,7 +36,6 @@ export class TryRecipesComponent implements OnInit, OnDestroy {
       this.recipeService.getCookingBlog(new HttpParams()).subscribe({
         next: (data: any) => {
           this.recipes = this.randomFourRecipes(data);
-          // console.log(this.recipes);
         },
         error: (error: any) => {
           console.error('Error loading recipes:', error);
@@ -63,14 +65,15 @@ export class TryRecipesComponent implements OnInit, OnDestroy {
   }
 
 
+
   toggleLike(recipeId: string, event: Event) {
     event.stopPropagation();
-    if (this.likedRecipes.has(recipeId)) {
-      this.likedRecipes.delete(recipeId);
-    } else {
-      this.likedRecipes.add(recipeId);
-      this.onLike();
-    }
+    this.store.dispatch(new ToggleLikeRecipe(recipeId));
+    this.onLike();
+  }
+
+  isRecipeLiked(recipeId: string): boolean {
+    return this.store.selectSnapshot(state => state.likedRecipes.likedRecipeIds.has(recipeId));
   }
 
   onLike() {

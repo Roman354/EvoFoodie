@@ -4,6 +4,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AuthState } from './store/auth.state';
+import { LikedRecipesState } from './store/liked-recipes.state';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,7 +68,7 @@ import { AuthInterceptor } from './auth-interceptor';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxsModule.forRoot([AuthState]),
+    NgxsModule.forRoot([AuthState, LikedRecipesState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot()
   ],

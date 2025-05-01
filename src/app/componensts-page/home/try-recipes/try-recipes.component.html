@@ -11,7 +11,7 @@
       <div class="recipe-image">
         <img [src]="recipe.image" [alt]="recipe.title">
         <div class="like-button"
-                [class.liked]="likedRecipes.has(recipe.id)"
+                [class.liked]="isRecipeLiked(recipe.id)"
                 (click)="toggleLike(recipe.id, $event)">
 
         </div>

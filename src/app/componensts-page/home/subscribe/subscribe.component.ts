@@ -24,7 +24,7 @@ export class SubscribeComponent {
 
       setTimeout(() => {
         this.showSuccessMessage = false;
-      }, 3000);
+      }, 5000);
     }
   }
 

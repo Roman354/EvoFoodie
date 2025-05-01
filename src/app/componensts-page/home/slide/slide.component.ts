@@ -39,7 +39,6 @@ export class SlideComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.recipeService.getCookingBlog(new HttpParams().set('filter', 3)).subscribe({
         next: (data: any) => {
-          // console.log(data);
           this.recipes = data;
         },
         error: (error: any) => {

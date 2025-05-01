@@ -40,7 +40,7 @@ export class AuthorizationComponent {
           this.errorMessage = 'Неверный логин или пароль';
           setTimeout(() => {
             this.showError = false;
-          }, 3000);
+          }, 5000);
         }
       });
     }
